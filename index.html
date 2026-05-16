@@ -3,143 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile - 프로필</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 60px 40px;
-            max-width: 700px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            color: #666;
-            font-size: 1.1em;
-            margin-bottom: 40px;
-        }
-
-        .projects {
-            display: grid;
-            gap: 15px;
-            margin-top: 40px;
-        }
-
-        a {
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.6);
-        }
-
-        .project-item {
-            text-align: left;
-            padding: 20px;
-            border: 2px solid #f0f0f0;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .project-item:hover {
-            border-color: #667eea;
-            background-color: #f8f9ff;
-        }
-
-        .project-title {
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 8px;
-            font-size: 1.1em;
-        }
-
-        .project-desc {
-            color: #666;
-            font-size: 0.9em;
-            margin-bottom: 12px;
-        }
-
-        .project-item a {
-            display: inline-block;
-            padding: 8px 20px;
-            font-size: 0.95em;
-        }
-
-        footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid #f0f0f0;
-            color: #999;
-            font-size: 0.9em;
-        }
-    </style>
+    <title>할 일 목록</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <h1>🎯 My Profile</h1>
-        <p class="subtitle">프로젝트 & 도구 모음</p>
-
-        <div class="projects">
-            <div class="project-item">
-                <div class="project-title">📱 계산기 (Calculator)</div>
-                <div class="project-desc">기능이 풍부한 웹 계산기</div>
-                <a href="calculator.html">열기</a>
+<body class="bg-gradient-to-br from-purple-50 to-pink-100 min-h-screen py-8 px-4">
+    <div class="max-w-2xl mx-auto">
+        <div class="bg-white rounded-lg shadow-2xl overflow-hidden">
+            <!-- 헤더 -->
+            <div class="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-8">
+                <h1 class="text-4xl font-bold text-white mb-2">할 일 목록</h1>
+                <p class="text-purple-100">오늘 할 일을 관리해보세요</p>
             </div>
 
-            <div class="project-item">
-                <div class="project-title">🔢 카운터 (Counter)</div>
-                <div class="project-desc">숫자 증감 도구</div>
-                <a href="counter.html">열기</a>
+            <!-- 입력 영역 -->
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex gap-2">
+                    <input
+                        type="text"
+                        id="todoInput"
+                        placeholder="새로운 할 일을 입력하세요..."
+                        class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        onkeypress="handleKeyPress(event)"
+                    >
+                    <button
+                        onclick="addTodo()"
+                        class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-3 rounded-lg transition duration-200 transform hover:scale-105 active:scale-95"
+                    >
+                        추가
+                    </button>
+                </div>
             </div>
 
-            <div class="project-item">
-                <div class="project-title">✅ Todo 리스트</div>
-                <div class="project-desc">할 일 관리 앱</div>
-                <a href="todo-list.html">열기</a>
-            </div>
-
-            <div class="project-item">
-                <div class="project-title">📝 기본 Todo</div>
-                <div class="project-desc">간단한 할 일 관리</div>
-                <a href="todo.html">열기</a>
+            <!-- 할 일 목록 -->
+            <div id="todoList" class="p-6 max-h-96 overflow-y-auto">
+                <p class="text-center text-gray-400 py-8">아직 할 일이 없습니다. 새로운 할 일을 추가해보세요!</p>
             </div>
         </div>
 
-        <footer>
-            <p>© 2026 My Profile. All rights reserved.</p>
-        </footer>
+        <!-- 통계 카드 -->
+        <div class="grid grid-cols-2 gap-4 mt-6">
+            <div class="bg-white rounded-lg shadow p-4">
+                <p class="text-gray-600 text-sm font-semibold mb-2">전체 할 일</p>
+                <p class="text-3xl font-bold text-purple-600" id="totalCount">0</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-4">
+                <p class="text-gray-600 text-sm font-semibold mb-2">완료된 할 일</p>
+                <p class="text-3xl font-bold text-pink-600" id="completedCount">0</p>
+            </div>
+        </div>
     </div>
+
+    <script>
+        let todos = [];
+
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            const text = input.value.trim();
+
+            if (text === '') {
+                alert('할 일을 입력해주세요!');
+                return;
+            }
+
+            const todo = {
+                id: Date.now(),
+                text: text,
+                completed: false
+            };
+
+            todos.push(todo);
+            input.value = '';
+            input.focus();
+            renderTodos();
+        }
+
+        function toggleTodo(id) {
+            todos = todos.map(todo =>
+                todo.id === id ? { ...todo, completed: !todo.completed } : todo
+            );
+            renderTodos();
+        }
+
+        function deleteTodo(id) {
+            todos = todos.filter(todo => todo.id !== id);
+            renderTodos();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                addTodo();
+            }
+        }
+
+        function renderTodos() {
+            const todoList = document.getElementById('todoList');
+
+            if (todos.length === 0) {
+                todoList.innerHTML = '<p class="text-center text-gray-400 py-8">아직 할 일이 없습니다. 새로운 할 일을 추가해보세요!</p>';
+            } else {
+                todoList.innerHTML = todos.map(todo => `
+                    <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-lg mb-3 hover:bg-gray-100 transition duration-150">
+                        <input
+                            type="checkbox"
+                            ${todo.completed ? 'checked' : ''}
+                            onchange="toggleTodo(${todo.id})"
+                            class="w-5 h-5 text-purple-600 rounded focus:ring-2 focus:ring-purple-500 cursor-pointer"
+                        >
+                        <span class="flex-1 text-gray-800 ${todo.completed ? 'line-through text-gray-400' : ''} transition duration-200">
+                            ${todo.text}
+                        </span>
+                        <button
+                            onclick="deleteTodo(${todo.id})"
+                            class="text-red-500 hover:text-red-700 hover:bg-red-50 px-3 py-1 rounded transition duration-200"
+                        >
+                            삭제
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            updateStats();
+        }
+
+        function updateStats() {
+            const total = todos.length;
+            const completed = todos.filter(todo => todo.completed).length;
+
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('completedCount').textContent = completed;
+        }
+    </script>
 </body>
 </html>
