@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - 프로필</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px 40px;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 40px;
+        }
+
+        .projects {
+            display: grid;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .project-item {
+            text-align: left;
+            padding: 20px;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover {
+            border-color: #667eea;
+            background-color: #f8f9ff;
+        }
+
+        .project-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .project-desc {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+        }
+
+        .project-item a {
+            display: inline-block;
+            padding: 8px 20px;
+            font-size: 0.95em;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+            color: #999;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 My Profile</h1>
+        <p class="subtitle">프로젝트 & 도구 모음</p>
+
+        <div class="projects">
+            <div class="project-item">
+                <div class="project-title">📱 계산기 (Calculator)</div>
+                <div class="project-desc">기능이 풍부한 웹 계산기</div>
+                <a href="calculator.html">열기</a>
+            </div>
+
+            <div class="project-item">
+                <div class="project-title">🔢 카운터 (Counter)</div>
+                <div class="project-desc">숫자 증감 도구</div>
+                <a href="counter.html">열기</a>
+            </div>
+
+            <div class="project-item">
+                <div class="project-title">✅ Todo 리스트</div>
+                <div class="project-desc">할 일 관리 앱</div>
+                <a href="todo-list.html">열기</a>
+            </div>
+
+            <div class="project-item">
+                <div class="project-title">📝 기본 Todo</div>
+                <div class="project-desc">간단한 할 일 관리</div>
+                <a href="todo.html">열기</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 My Profile. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
